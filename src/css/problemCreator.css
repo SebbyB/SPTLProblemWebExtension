@@ -1,0 +1,36 @@
+.removeAccession {
+    background-color: transparent;  /* Make the background transparent */
+    border: none;                   /* Remove default borders */
+    color: red;                     /* Set the text color to red */
+    font-size: 12px;                /* Adjust the size of the "x" */
+    cursor: pointer;                /* Change the cursor to a pointer */
+    padding: 5px;                   /* Adjust padding */
+}
+
+.test{
+    background-color: #FAF9F6;
+}
+
+.accession {
+    display: flex;
+    align-items: center;               /* Vertically center all items */
+    justify-content: space-between;    /* Place the input/remove on the left and expand on the right */
+    padding: 5px;           /* Optional: Border for visual reference */
+    background-color: #FAF9F6;
+
+}
+
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+button i {
+    font-size: 16px;
+}
+
+.expandButton {
+    /* No need for any special styles here as flexbox handles the layout */
+}

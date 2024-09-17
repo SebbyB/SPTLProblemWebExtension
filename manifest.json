@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "SPTL Problem Automation",
+    "description": "Designed for running reports automatically.",
+    "version": "1.0",
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "src/images/icon.png"
+    },
+    "permissions": [    
+        "tabs",
+        "scripting",
+        "activeTab",
+        "storage"
+        ],
+    "background": {
+        "service_worker": "src/js/background.js"
+
+    },
+    "host_permissions": ["<all_urls>"]
+    
+}

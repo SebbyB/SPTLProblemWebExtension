@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPTL Problem gen</title>
+    <link rel="stylesheet" href="src\css\style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+    crossorigin="anonymous" />
+    <script src="src/js/popup.js" defer></script>
+    <script src="src/js/popupExamples.js" defer></script>
+    <script src="src/js/userFunctions.js" defer></script>
+
+</head>
+<body>
+
+<div class = "header"></div>
+<div class = "content">
+    <!-- This button hides the Example Section from view -->
+    <button id="hideButton">
+        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-window-minimize"></i>
+    </button>
+
+    <!-- Example User Input Section -->
+    <div class="example">
+
+        <div class="user-input-section">
+
+
+            <!-- Different Formats for inputs  -->
+            <div class="inputFormats">
+                <div class="numberPicker">
+                        <input type="number" id="number-picker" value="0">
+                </div>
+                <div class="BlankInput">
+                    <input type="text" id="inputField" placeholder="Enter text" />
+                </div>
+                <div class="dashedNumbers">
+                    <input type="text" id="dashed-Input" maxlength="14" placeholder="12-123-123456">
+                    <span class = "tooltip" id="dashed-tooltip" style="visibility:hidden; color:white; font-size:12px;">Sorry, you can't enter numbers in this format</span>
+                </div>
+                <div class="numbered">
+                    <input type="text" id="10-number-Input" maxlength="10" placeholder="0123456789">
+                    <span class = "tooltip" id="10-number-tooltip" style="visibility:hidden; color:white; font-size:12px;">Sorry, you can't enter numbers in this format</span>
+                </div>
+            </div>
+
+
+
+            <a>Example Anchor Tag!</a>    
+            <div class="toggle-container">
+                <input type="checkbox" id="toggle" class="toggle-checkbox" />
+                <label for="toggle" class="toggle-label">
+                    <span class="toggle-button"></span>
+                </label>
+            </div>
+        </div>
+        <div id="user-output-section">
+            <div class="genericText">Blank!</div>
+            <div class="executionButtons">
+                <button id="executeButton">Execute Function!</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="create-problem-section">    
+    <link rel="stylesheet" href="src/css/problemCreator.css">
+    <script src="src/js/problemCreator.js" defer></script>
+        <div class="problem-input-section">
+            <div class="accessions"><button id="hide-accessions-button"></button>
+                <div class="genericText" id="accessions-compressed-view-text">Accessions</div>
+                <div class="genericHeader" id = "accessions-expanded-view-text">Number of Accessions?</div>
+                <div class="accession-ticker-box" >
+                    <input type="number" id="accession-size-input" value="0">
+                    <input type="hidden"id = "accession-size-input-record" value = 0>
+                </div>
+                <div class="accession-input-fields" id="accession-input-fields">
+
+                </div>
+            </div>
+            
+        </div>
+        <div id="problem-output-section">
+            <button id="executeButton">Execute Function!</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="src\js\background.js"></script>
+</body>
+</html>
