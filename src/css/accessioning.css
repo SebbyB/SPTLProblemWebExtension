@@ -1,0 +1,8 @@
+.removeAccession {
+    background-color: transparent;  /* Make the background transparent */
+    border: none;                   /* Remove default borders */
+    color: red;                     /* Set the text color to red */
+    font-size: 12px;                /* Adjust the size of the "x" */
+    cursor: pointer;                /* Change the cursor to a pointer */
+    padding: 5px;                   /* Adjust padding */
+}
