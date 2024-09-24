@@ -1,3 +1,6 @@
+//Going to generalize
+
+
 class accessionedInput{
 
     constructor(del = false){
@@ -14,25 +17,25 @@ class accessionedInput{
     let obj = this;
     this.input.addEventListener('input',function(e){
         {
-            let value = e.target.value.replace(/[^0-9a-zA-Z]/g, ''); // Remove all non-alphanumeric characters
+            let inputValue = e.target.value.replace(/[^0-9a-zA-Z]/g, ''); // Remove all non-alphanumeric characters
             // Apply the format: 12-123-123456
-            if (value.length > 2) {
-                value = value.substring(0, 2) + '-' + value.substring(2);
+            if (inputValue.length > 2) {
+                inputValue = inputValue.substring(0, 2) + '-' + inputValue.substring(2);
             }
-            if (value.length > 6) {
-                value = value.substring(0, 6) + '-' + value.substring(6);
+            if (inputValue.length > 6) {
+                inputValue = inputValue.substring(0, 6) + '-' + inputValue.substring(6);
             }
             let isValidFormat = true;
         
             // Check that positions 0-1, 3-5, 7-12 are digits
-            for (let i = 0; i < value.length; i++) {
-                if ((i < 13 && i !== 2 && i !== 6 && /\D/.test(value[i]))) {
+            for (let i = 0; i < inputValue.length; i++) {
+                if ((i < 13 && i !== 2 && i !== 6 && /\D/.test(inputValue[i]))) {
                     isValidFormat = false;
                 }
             }
         
             // Check that the last character (position 13) is a letter
-            if (value.length === 14 && !/[a-zA-Z]/.test(value[13])) {
+            if (inputValue.length === 14 && !/[a-zA-Z]/.test(inputValue[13])) {
                 isValidFormat = false;
             }
         
@@ -40,17 +43,17 @@ class accessionedInput{
             if (!isValidFormat) {
                 tt.style.visibility = 'visible';
             } else {
-                if(value.length >= 13){
+                if(inputValue.length >= 13){
                     obj.isComplete = true;
                 }
                 else{
                     obj.isComplete = false;
                 }
                 tt.style.visibility = 'hidden';
-                obj.setAccession(value);
+                obj.setAccession(inputValue);
             }
         
-            e.target.value = value;  // Update the input field with formatted value
+            e.target.value = inputValue;  // Update the input field with formatted value
 
         }
     });
