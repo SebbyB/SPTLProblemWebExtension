@@ -10,6 +10,43 @@ function addLeadingZeros(value, n) {
 }
 
 
+function updateTargets(targets){
+        //Pulls length to local scope; 
+        let len = targets.length;
+        //If there are no targets there is nothing to update.
+        if(len === 0){
+            throw new Error("You cannot update an empty list.");
+        }
+        else{
+            let changed = false;
+            //Iterate over the runnables
+            for(var i = 0; i < len; i++){
+                let target = targets[i];
+                //If the target should be updated, update it. Otherwise Continue.
+                // console.log(target);
+                // console.log(target.doUpdate);
+                if(target.doUpdate){
+                    // console.log("akhjgdskfjaghsjhfh");
+
+                    let out = {
+                        changed :changed,
+                        target : target,
+                        this : this
+                    };
+                    console.log("TargetUpdate: ", out);
+                    changed = true;
+                    target.updateRunnables();
+                }
+            }
+            //If nothing has changed print that.
+            if(!changed){
+                console.log("No Updates on target: ",this);
+                return this;
+            }
+
+        }
+}
+
 class runnable{
 
     constructor(name,doRun=false,func = () => {
@@ -17,9 +54,12 @@ class runnable{
     }){
         this.name = name;
         this.doRun = doRun;
-        this.func() = func;
+        this.func = func;
+        this.obj = null;
+        this.node = null;
     }
 }
+
 class target{
     constructor(node = null, obj = null){
         this.name = '';
@@ -71,16 +111,33 @@ class target{
         //If there are no runnables there is nothing to update.
         if(len === 0){
             throw new Error("You cannot update an empty list.");
-        }else if(len <0){
+        }
+        //No explaination, if you don't know what you're doing don't use the target or runnable class.
+        else if(index < 0){
             throw new Error("Bruh");
-            
         }
+        //Checks if the index is within the array.
+        else if(index > len){
+            throw new Error("Element does not exist"); 
+        }
+        //Given no errors changes the runnable's state.
         else{
+            //Brings it into local scope and changes it, storing it in tmp.
             let runnable = this.runnables[index];
+            let previous = runnable.doRun;
             runnable.doRun = doRun;
-        }
-        
+
+            //Returns an object containing the target, the runnable, the previous state, and the updated state.
+            let returnObject = {
+                target : this,
+                runnable : runnable,
+                previous_state : previous,
+                updated_state : runnable.doRun
+            };
+            return returnObject;
+            } 
     }
+
     changeRunnablefunc(index, func = ()=>{
         console.log(this);
     }){
@@ -89,14 +146,31 @@ class target{
         //If there are no runnables there is nothing to update.
         if(len === 0){
             throw new Error("You cannot update an empty list.");
-        }else if(len <0){
+        }
+        //No explaination, if you don't know what you're doing don't use the target or runnable class.
+        else if(index < 0){
             throw new Error("Bruh");
-            
         }
+        //Checks if the index is within the array.
+        else if(index > len){
+            throw new Error("Element does not exist"); 
+        }
+        //Given no errors changes the runnable's state.
         else{
+            //Brings it into local scope and changes it, storing it in tmp.
             let runnable = this.runnables[index];
-            runnable.func() = func;
-        }
+            let previous = runnable.func;
+            runnable.func = func;
+
+            //Returns an object containing the target, the runnable, the previous state, and the updated state.
+            let returnObject = {
+                target : this,
+                runnable : runnable,
+                previous_function : previous,
+                updated_function : runnable.doRun
+            };
+            return returnObject;
+            } 
         
     }
     addRunnable(name,doRun,func){
@@ -207,10 +281,15 @@ class inputControl{
 
         //formatting rules -- there are none for this abstract class.
         format(value){
+
             this.toolTip.changeToolTip("This input does not have formatting!");
             this.toolTip.switchVisibility();
             console.log("This input does not have formatting!");
             return false;
+        }
+
+        getValue(){
+            return this.value;
         }
 
         //sets the value of whatever input we're using.
@@ -220,16 +299,12 @@ class inputControl{
 
 
             this.input.value = this.value;
+            updateTargets(this.targets);
+
             return previousValue;
         }
 
-        updateTargets(){
-            this.targets.forEach(target =>{
-                if(target.doUpdate){
-                    target.updateRunnables();
-                }
-            });
-        }
+
 
 }
 
@@ -542,6 +617,16 @@ class dynamicInputList{
         this.doorMan.up() = () => {   
             let newInput = new inputControl();
             this.inputList.push(newInput);
+
+        };
+
+        this.doorMan.down() = () =>{
+            
+            if(this.inputList.length === 0){
+                throw new Error("There are no inputs to change");
+            }
+
         }
     }
+
 }

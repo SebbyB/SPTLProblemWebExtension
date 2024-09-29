@@ -77,6 +77,13 @@ class collapsable{
         return this.container;
     }
 
+
+    newDetail(){
+        let newDetailsContainer = document.createElement("div");
+        newDetailsContainer.classList.add("collapsable-detail");
+        this.details.appendChild(newDetailsContainer);
+        return newDetailsContainer;
+    }
     //adds content to the end of a details pane.
     appendToDetails(node){
 
@@ -206,4 +213,17 @@ class collapsable{
         }
         return detailsList;
     }
+}
+
+
+
+
+function createNcollapsables(n,node){
+    var collapsables = [];
+    for(var i = 0; i < n; i++){
+        let col = new collapsable(node)
+        collapsables.push(col);
+    }
+
+    return collapsables;
 }
